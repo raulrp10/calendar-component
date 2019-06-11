@@ -101,9 +101,10 @@ public class DateCell extends FocusableComplexPanel
         // 2 slots / hour
         firstHour = weekgrid.getFirstHour();
         lastHour = weekgrid.getLastHour();
-        numberOfSlots = (lastHour - firstHour + 1) * 2;
+        //numberOfSlots = (lastHour - firstHour + 1) * 2;
+        numberOfSlots = 21;
 
-        long slotTime = Math.round(((lastHour - firstHour + 1) * 3600000.0) / numberOfSlots);
+        long slotTime = Math.round(((lastHour - firstHour + 1) * 2700000.0) / numberOfSlots);
 
         slotElements = new Element[numberOfSlots];
         slotElementHeights = new int[numberOfSlots];
@@ -111,7 +112,7 @@ public class DateCell extends FocusableComplexPanel
         slots.clear();
 
         long dateTime = getDate().getTime();
-        long start = dateTime + firstHour * 3600000;
+        long start = dateTime + firstHour * 2700000;
         long end = start + slotTime;
 
         for (int i = 0; i < numberOfSlots; i++) {
@@ -260,7 +261,7 @@ public class DateCell extends FocusableComplexPanel
         int h = today.getHours();
         int m = today.getMinutes();
         if (h >= firstHour && h <= lastHour) {
-            int pixelTop = weekgrid.getPixelTopFor(m + 60 * h);
+            int pixelTop = weekgrid.getPixelTopFor(m + 45 * h);
             todaybar.getStyle().clearDisplay();
             todaybar.getStyle().setTop(pixelTop, Unit.PX);
         } else {
@@ -678,8 +679,8 @@ public class DateCell extends FocusableComplexPanel
 
             clearSelectionRange();
 
-            int startMinutes = firstHour * 60 + slotStart * 30;
-            int endMinutes = (firstHour * 60) + (slotEnd + 1) * 30;
+            int startMinutes = firstHour * 60 + (slotStart) * 45;
+            int endMinutes = (firstHour * 60) + (slotEnd + 1) * 45;
             Date currentDate = getDate();
 
             if (weekgrid.getCalendar().getRangeSelectListener() != null) {

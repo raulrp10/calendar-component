@@ -62,11 +62,11 @@ public class MeetingCalendar extends CustomComponent {
         Meeting meeting = new Meeting(
                 !event.getStart().truncatedTo(DAYS).equals(event.getEnd().truncatedTo(DAYS)));
 
-        meeting.setStart(event.getStart());
-        meeting.setEnd(event.getEnd());
+        meeting.setStart(event.getStart().minusMinutes(30));
+        meeting.setEnd(event.getEnd().minusMinutes(30));
 
         meeting.setName("A Name");
-        meeting.setDetails("A Detail<br>with HTML<br> with more lines");
+        meeting.setDetails("A Detail<br>with HTML<br> with more lines"+event.getStart());
 
         // Random state
         meeting.setState(R.nextInt(2) == 1 ? Meeting.State.planned : Meeting.State.confirmed);
@@ -110,7 +110,7 @@ public class MeetingCalendar extends CustomComponent {
 
         addCalendarEventListeners();
 
-        setupBlockedTimeSlots();
+        //setupBlockedTimeSlots();
     }
 
     private void setupBlockedTimeSlots() {

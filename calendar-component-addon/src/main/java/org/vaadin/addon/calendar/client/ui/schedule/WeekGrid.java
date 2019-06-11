@@ -47,7 +47,7 @@ public class WeekGrid extends SimplePanel {
     private boolean verticalScrollEnabled;
     private boolean horizontalScrollEnabled;
     private int[] cellHeights;
-    private final int slotInMinutes = 30;
+    private final int slotInMinutes = 45;
     private int dateCellBorder;
     private DateCell dateCellOfToday;
     private int[] cellWidths;
@@ -551,8 +551,10 @@ public class WeekGrid extends SimplePanel {
 
     public static class Timebar extends HTML {
 
-        private static final int[] timesFor12h = { 12, 1, 2, 3, 4, 5, 6, 7, 8,
-                9, 10, 11 };
+        /*private static final int[] timesFor12h = { 12, 1, 2, 3, 4, 5, 6, 7, 8,
+                9, 10, 11 };*/
+        private static final double[] timesFor12h = { 12.30, 1.15, 2, 2.45, 3.30 , 4.15, 5, 5.45, 6.30, 7.15, 8,
+                8.45, 9.30, 10.15, 11.00, 11.45 };
 
         private int height;
 
@@ -593,12 +595,32 @@ public class WeekGrid extends SimplePanel {
             DateTimeService dts = new DateTimeService();
 
             if (format24h) {
-                for (int i = firstHour + 1; i <= lastHour; i++) {
+                String[] ampm = new String[] { "AM", "PM" };
+                /*for (int i = firstHour + 1; i <= lastHour; i++) {
                     e = DOM.createDiv();
                     setStyleName(e, "v-calendar-time");
                     String delimiter = dts.getClockDelimeter();
                     e.setInnerHTML("<span>" + i + "</span>" + delimiter + "00");
                     getElement().appendChild(e);
+                }*/
+                if (firstHour < 12) {
+                    for (int i = 9; i < 16; i++) {
+                        e = DOM.createDiv();
+                        setStyleName(e, "v-calendar-time");
+                        e.setInnerHTML("<span>" + timesFor12h[i] + "</span>"
+                                + " " + ampm[0]);
+                        getElement().appendChild(e);
+                    }
+                }
+
+                if (lastHour > 11) {
+                    for (int i = 0; i <= 12; i++) {
+                        e = DOM.createDiv();
+                        setStyleName(e, "v-calendar-time");
+                        e.setInnerHTML("<span>" + timesFor12h[i] + "</span>"
+                                + " " + ampm[1]);
+                        getElement().appendChild(e);
+                    }
                 }
             } else {
                 // FIXME Use dts.getAmPmStrings(); and make sure that
@@ -608,7 +630,7 @@ public class WeekGrid extends SimplePanel {
                 int amStop = (lastHour < 11) ? lastHour : 11;
                 int pmStart = (firstHour > 11) ? firstHour % 11 : 0;
 
-                if (firstHour < 12) {
+                /*if (firstHour < 12) {
                     for (int i = firstHour + 1; i <= amStop; i++) {
                         e = DOM.createDiv();
                         setStyleName(e, "v-calendar-time");
@@ -620,6 +642,25 @@ public class WeekGrid extends SimplePanel {
 
                 if (lastHour > 11) {
                     for (int i = pmStart; i < lastHour - 11; i++) {
+                        e = DOM.createDiv();
+                        setStyleName(e, "v-calendar-time");
+                        e.setInnerHTML("<span>" + timesFor12h[i] + "</span>"
+                                + " " + ampm[1]);
+                        getElement().appendChild(e);
+                    }
+                }*/
+                if (firstHour < 12) {
+                    for (int i = 9; i < 16; i++) {
+                        e = DOM.createDiv();
+                        setStyleName(e, "v-calendar-time");
+                        e.setInnerHTML("<span>" + timesFor12h[i] + "</span>"
+                                + " " + ampm[0]);
+                        getElement().appendChild(e);
+                    }
+                }
+
+                if (lastHour > 11) {
+                    for (int i = 0; i <= 12; i++) {
                         e = DOM.createDiv();
                         setStyleName(e, "v-calendar-time");
                         e.setInnerHTML("<span>" + timesFor12h[i] + "</span>"
@@ -666,7 +707,8 @@ public class WeekGrid extends SimplePanel {
                 // 23 hours + first is empty
                 // we try to adjust the height of time labels to the distributed
                 // heights of the time slots
-                int hoursPerDay = lastHour - firstHour + 1;
+                //int hoursPerDay = lastHour - firstHour + 1;
+                int hoursPerDay = 21;
 
                 int slotsPerHour = slotCellHeights.length / hoursPerDay;
                 int[] cellHeights = new int[slotCellHeights.length

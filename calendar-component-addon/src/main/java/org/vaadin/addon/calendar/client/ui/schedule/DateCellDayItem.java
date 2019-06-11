@@ -45,7 +45,7 @@ public class DateCellDayItem extends FocusableHTML
         implements MouseDownHandler, MouseUpHandler, MouseMoveHandler,
         KeyDownHandler, ContextMenuHandler, HasTooltipKey {
 
-    public static final int halfHourInMilliSeconds = 1800 * 1000;
+    public static final int halfHourInMilliSeconds = 2700 * 1000;
     private final DateCell dateCell;
     private final Element eventContent;
     private final WeekGrid weekGrid;

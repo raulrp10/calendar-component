@@ -185,12 +185,12 @@ public class Calendar<ITEM extends EditableCalendarItem> extends AbstractCompone
     /**
      * First hour to show for a day
      */
-    private int firstHour = 0;
+    private int firstHour = 7;
 
     /**
      * Last hour to show for a day
      */
-    private int lastHour = 23;
+    private int lastHour = 21;
 
     /**
      * List of action handlers.

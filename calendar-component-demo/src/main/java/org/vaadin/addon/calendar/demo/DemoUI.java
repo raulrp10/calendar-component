@@ -56,7 +56,7 @@ public class DemoUI extends UI
         zoneBox.addValueChangeListener(e -> meetings.getCalendar().setZoneId(ZoneId.of(e.getValue())));
 
 
-        CalStyle initial = new CalStyle("Day 1 - 7", () -> meetings.getCalendar().withVisibleDays(1, 7));
+        CalStyle initial = new CalStyle("Day 1 - 7", () -> meetings.getCalendar().withVisibleDays(1, 6));
 
         ComboBox<CalStyle> calActionComboBox = new ComboBox<>();
         calActionComboBox.setItems(
