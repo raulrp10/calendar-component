@@ -13,7 +13,8 @@ public class Meeting {
     enum State {
         empty,
         planned,
-        confirmed
+        confirmed,
+        prueba
     }
 
     private ZonedDateTime start;
@@ -73,7 +74,7 @@ public class Meeting {
     }
 
     public boolean isEditable() {
-        return state != State.confirmed;
+        return false;
     }
 
     public boolean isLongTimeEvent() {

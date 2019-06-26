@@ -86,8 +86,7 @@ public class MeetingItem extends BasicItem {
     @Override
     public String getDateCaptionFormat() {
         //return CalendarItem.RANGE_TIME;
-        return VaadinIcons.CLOCK.getHtml()+" %s<br>" +
-               VaadinIcons.ARROW_CIRCLE_RIGHT_O.getHtml()+" %s";
+        return VaadinIcons.CLOCK.getHtml()+" %s%s";
 	}
 
 }

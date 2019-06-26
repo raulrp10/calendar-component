@@ -1,22 +1,18 @@
 package org.vaadin.addon.calendar.demo.meetings;
 
-import static java.time.temporal.ChronoUnit.DAYS;
+import com.vaadin.shared.ui.ContentMode;
+import com.vaadin.ui.*;
+import com.vaadin.ui.Notification.Type;
+import org.vaadin.addon.calendar.Calendar;
+import org.vaadin.addon.calendar.handler.BasicDateClickHandler;
+import org.vaadin.addon.calendar.item.BasicItemProvider;
+import org.vaadin.addon.calendar.ui.CalendarComponentEvents;
 
 import java.time.Month;
 import java.util.GregorianCalendar;
 import java.util.Random;
 
-import com.vaadin.shared.ui.ContentMode;
-import com.vaadin.ui.CustomComponent;
-import com.vaadin.ui.Notification;
-import com.vaadin.ui.Notification.Type;
-import com.vaadin.ui.Panel;
-import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
-import org.vaadin.addon.calendar.Calendar;
-import org.vaadin.addon.calendar.handler.BasicDateClickHandler;
-import org.vaadin.addon.calendar.item.BasicItemProvider;
-import org.vaadin.addon.calendar.ui.CalendarComponentEvents;
+import static java.time.temporal.ChronoUnit.DAYS;
 
 
 public class MeetingCalendar extends CustomComponent {
@@ -69,8 +65,8 @@ public class MeetingCalendar extends CustomComponent {
         meeting.setDetails("A Detail<br>with HTML<br> with more lines"+event.getStart());
 
         // Random state
-        meeting.setState(R.nextInt(2) == 1 ? Meeting.State.planned : Meeting.State.confirmed);
-
+        //meeting.setState(R.nextInt(2) == 1 ? Meeting.State.planned : Meeting.State.confirmed);
+        meeting.setState(Meeting.State.prueba);
         eventProvider.addItem(new MeetingItem(meeting));
 	}
 
@@ -110,7 +106,7 @@ public class MeetingCalendar extends CustomComponent {
 
         addCalendarEventListeners();
 
-        //setupBlockedTimeSlots();
+        setupBlockedTimeSlots();
     }
 
     private void setupBlockedTimeSlots() {
@@ -135,11 +131,11 @@ public class MeetingCalendar extends CustomComponent {
         cal.add(java.util.Calendar.DAY_OF_WEEK, 1);
 
         bcal.clear();
-        bcal.add(java.util.Calendar.HOUR, 14);
+        bcal.add(java.util.Calendar.HOUR, 10);
         bcal.add(java.util.Calendar.MINUTE, 30);
         start = bcal.getTimeInMillis();
 
-        bcal.add(java.util.Calendar.MINUTE, 60);
+        bcal.add(java.util.Calendar.MINUTE, 45);
         end = bcal.getTimeInMillis();
 
         calendar.addTimeBlock(start, end);

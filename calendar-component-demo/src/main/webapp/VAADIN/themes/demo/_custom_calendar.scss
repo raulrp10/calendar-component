@@ -109,5 +109,13 @@ background: none;
         }
     }
 
+    .v-calendar-event.v-calendar-event-state-prueba {
+        color: #990000;
+
+        .v-calendar-event-content {
+            background-color: rgba(190, 239, 190, 0.65);
+        }
+    }
+
 }
 }
