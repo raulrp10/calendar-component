@@ -261,7 +261,7 @@ public class DateCell extends FocusableComplexPanel
         int h = today.getHours();
         int m = today.getMinutes();
         if (h >= firstHour && h <= lastHour) {
-            int pixelTop = weekgrid.getPixelTopFor(45+m + 60 * h);
+            int pixelTop = weekgrid.getPixelTopFor(30+m + 60 * h);
             todaybar.getStyle().clearDisplay();
             todaybar.getStyle().setTop(pixelTop, Unit.PX);
         } else {
